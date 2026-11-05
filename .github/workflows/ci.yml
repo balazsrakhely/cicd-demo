@@ -1,4 +1,5 @@
 # .github/workflows/ci.yml — first version. One job, three steps.
+# trigger
 name: CI
 
 on:
