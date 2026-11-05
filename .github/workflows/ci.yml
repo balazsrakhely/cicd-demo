@@ -1,0 +1,21 @@
+# .github/workflows/ci.yml — first version. One job, three steps.
+name: CI
+
+on:
+  pull_request:            # run on every pull request that targets main
+    branches: [main]
+  workflow_dispatch:       # and whenever you press Run workflow by hand
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7      # the runner starts empty; clone the repo
+
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod      # one Go version, named in one place
+
+      - run: go vet ./...
+
+      - run: go test -v ./...
